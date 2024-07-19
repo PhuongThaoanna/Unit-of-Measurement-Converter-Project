@@ -1,1 +1,2 @@
-This project is to write a Python code to convert between different units. For example, if I want to convert from km to m, if I type in 1km it will show the the value of 1km =.... m 
+This project is to write a Python code to convert between different units type such as area, length, volume and etc. For example, at first it will ask me to choose the type that I want to convert then put in source and target that I want to convert from to, if it is not in the same type such as kg to cm, it will print out invalid value, and give out the suggestion on which one that I can choose from. After the converting is done, it will show up an option for if I want to do another convert or not. If not, it will print out the statement. 
+That should be all for this simple project 
