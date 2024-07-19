@@ -94,7 +94,7 @@ def main():
         result = convert_unit(value, source_unit, target_unit, category)
         
         if result is not None:
-            print(f"{value} {source_unit} = {result:.2f} {target_unit}")
+            print(f"{value} {source_unit} = {result:.4f} {target_unit}")
         else:
             print("Conversion not available for the selected category.")
         
