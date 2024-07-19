@@ -1,5 +1,5 @@
 def get_unit_category():
-    categories = ["temperature", "length", "weight", "time", "area", "volume"]
+    categories = ["temperature", "length", "weight", "time", "area", "volume"] # 6 type of convert unit
     while True:
         print(f"Choose unit category {tuple(categories)}:")
         choice = input().lower()
@@ -10,7 +10,7 @@ def get_unit_category():
 def get_units(category):
     units = {
         "temperature": ["Celsius", "Fahrenheit", "Kelvin"],
-        "length": ["Meter", "Centimeter", "Millimeter", "Kilometer", "Inch", "Feet", "Yard", "Mile"],
+        "length": ["Meter", "Centimeter", "Millimeter", "Kilometer", "Inch", "Foot", "Yard", "Mile"],
         "weight": ["Kilogram", "Gram", "Milligram", "Ton", "Pound", "Ounce"],
         "time": ["Second", "Minute", "Hour", "Day", "Week", "Month", "Year"],
         "area": ["SquareMeter", "SquareKilometer", "Hectare", "Acre", "SquareFoot", "SquareInch"],
@@ -36,7 +36,6 @@ def convert_unit(value, from_unit, to_unit, category):
             elif to_unit == "Fahrenheit":
                 return (value - 273.15) * 9/5 + 32
     else:
-        # For other categories, we'll use a base unit for conversion
         base_units = {
             "length": "Meter",
             "weight": "Kilogram",
@@ -47,7 +46,7 @@ def convert_unit(value, from_unit, to_unit, category):
         
         conversion_factors = {
             "length": {"Meter": 1, "Centimeter": 0.01, "Millimeter": 0.001, "Kilometer": 1000, 
-                       "Inch": 0.0254, "Feet": 0.3048, "Yard": 0.9144, "Mile": 1609.34},
+                       "Inch": 0.0254, "Foot": 0.3048, "Yard": 0.9144, "Mile": 1609.34},
             "weight": {"Kilogram": 1, "Gram": 0.001, "Milligram": 1e-6, "Ton": 1000, 
                        "Pound": 0.453592, "Ounce": 0.0283495},
             "time": {"Second": 1, "Minute": 60, "Hour": 3600, "Day": 86400, 
@@ -75,7 +74,7 @@ def main():
             source_unit = input("Enter the source unit: ")
             if source_unit in available_units:
                 break
-            print("Invalid unit. Please choose from the available units.")
+            print(f"Invalid unit. Please choose from the available units: {', '.join(available_units)}")
         
         print(f"Available target units: {', '.join(available_units)}")
         
@@ -83,18 +82,28 @@ def main():
             target_unit = input("Enter the target unit: ")
             if target_unit in available_units:
                 break
-            print("Invalid unit. Please choose from the available units.")
+            print(f"Invalid unit. Please choose from the available units: {', '.join(available_units)}")
         
-        value = float(input("Enter the value to convert: "))
+        while True:
+            try:
+                value = float(input("Enter the value to convert: "))
+                break
+            except ValueError:
+                print("Invalid input. Please enter a numeric value.") #handle when entering the wrong type to prevent crash
         
         result = convert_unit(value, source_unit, target_unit, category)
         
         if result is not None:
-            print(f"{value} {source_unit} = {result:.4f} {target_unit}")
+            print(f"{value} {source_unit} = {result:.2f} {target_unit}")
         else:
             print("Conversion not available for the selected category.")
         
-        choice = input("Do you want to perform another conversion? (yes/no): ").lower()
+        while True:
+            choice = input("Do you want to perform another conversion? (yes/no): ").lower()
+            if choice in ['yes', 'no']:
+                break
+            print("Invalid input. Please enter 'yes' or 'no'.")
+        
         if choice != 'yes':
             print("End")
             print("Please start the convert again to reconvert")
