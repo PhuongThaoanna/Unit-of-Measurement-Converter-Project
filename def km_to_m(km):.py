@@ -75,7 +75,7 @@ def main():
             source_unit = input("Enter the source unit: ")
             if source_unit in available_units:
                 break
-            print(f"Invalid unit. Please choose from the available units: {', '.join(available_units)}")
+            print("Invalid unit. Please choose from the available units.")
         
         print(f"Available target units: {', '.join(available_units)}")
         
@@ -83,7 +83,7 @@ def main():
             target_unit = input("Enter the target unit: ")
             if target_unit in available_units:
                 break
-            print(f"Invalid unit. Please choose from the available units: {', '.join(available_units)}")
+            print("Invalid unit. Please choose from the available units.")
         
         value = float(input("Enter the value to convert: "))
         
@@ -94,12 +94,7 @@ def main():
         else:
             print("Conversion not available for the selected category.")
         
-        while True:
-            choice = input("Do you want to perform another conversion? (yes/no): ").lower()
-            if choice in ['yes', 'no']:
-                break
-            print("Invalid input. Please enter 'yes' or 'no'.")
-        
+        choice = input("Do you want to perform another conversion? (yes/no): ").lower()
         if choice != 'yes':
             print("End")
             print("Please start the convert again to reconvert")
